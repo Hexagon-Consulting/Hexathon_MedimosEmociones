@@ -19,7 +19,6 @@ import { colors, gradients, layout } from './src/styles/styles';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import Icon from 'react-native-ionicons';
 
 // Bottom Tab Navigator
 const MainTab = createBottomTabNavigator();
@@ -40,7 +39,7 @@ const MainView: React.FC = ({children}: PropsWithChildren)  => {
 				marginLeft: insets.left,
 				marginRight: insets.right,
 			}]}>
-				<Icon name='home-outline' color='black' size={25}/>
+				{/* <Icon name='md-home' color={colors[colorScheme].text} size={25}/> */}
 				<Text style={{
 					color: colors[colorScheme].text,
 				}}>Hello Hexagon!</Text>
@@ -78,10 +77,10 @@ function MainNavigator({children}: PropsWithChildren): JSX.Element {
 				name='Main'
 				component={MainView}
 				options={{
-					tabBarIcon: ({focused, color, size})=>{
-						const iconName = focused ? 'home-filled' : 'home-outline';
-						return <Icon name={iconName} color={color} size={size}/>;
-					},
+					// tabBarIcon: ({focused, color, size})=>{
+					// 	// const iconName = focused ? 'home-filled' : 'home-outline';
+					// 	// return <Icon name={iconName} color={color} size={size}/>;
+					// },
 				}}
 				
 			/>
