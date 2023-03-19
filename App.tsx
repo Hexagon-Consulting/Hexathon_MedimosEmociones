@@ -20,6 +20,8 @@ import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-cont
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
+import IonIcon from 'react-native-vector-icons/Ionicons';
+
 // Bottom Tab Navigator
 const MainTab = createBottomTabNavigator();
 
@@ -77,10 +79,21 @@ function MainNavigator({children}: PropsWithChildren): JSX.Element {
 				name='Main'
 				component={MainView}
 				options={{
-					// tabBarIcon: ({focused, color, size})=>{
-					// 	// const iconName = focused ? 'home-filled' : 'home-outline';
-					// 	// return <Icon name={iconName} color={color} size={size}/>;
-					// },
+					tabBarIcon: ({focused, color, size})=>{
+						if (focused) return <IonIcon name='home' color='white' size={24} />
+						return <IonIcon name='home-outline' color='white' size={24} />
+					},
+				}}
+				
+			/>
+			<MainTab.Screen
+				name='Users'
+				component={MainView}
+				options={{
+					tabBarIcon: ({focused, color, size})=>{
+						if (focused) return <IonIcon name='people' color='white' size={24} />
+						return <IonIcon name='people-outline' color='white' size={24} />
+					},
 				}}
 				
 			/>
