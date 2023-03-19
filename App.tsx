@@ -5,101 +5,17 @@
  * @format
  */
 
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   StatusBar,
-  Text,
-  useColorScheme,
 	View,
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen';
-import LinearGradient from 'react-native-linear-gradient';
-import { colors, gradients, layout } from './src/styles/styles';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 
-import IonIcon from 'react-native-vector-icons/Ionicons';
-
-// Bottom Tab Navigator
-const MainTab = createBottomTabNavigator();
-
-const MainView: React.FC = ({children}: PropsWithChildren)  => {
-	const isDarkMode = useColorScheme() === 'dark';
-	const colorScheme = useColorScheme() || 'light';
-	const insets = useSafeAreaInsets();
-
-	return (
-		<View style={[layout.flexFill, {
-				borderRadius: 24,
-				paddingHorizontal: 8,
-				paddingVertical: 16,
-				backgroundColor: colors[colorScheme].background,
-				marginTop: insets.top,
-				marginBottom: insets.bottom,
-				marginLeft: insets.left,
-				marginRight: insets.right,
-			}]}>
-				{/* <Icon name='md-home' color={colors[colorScheme].text} size={25}/> */}
-				<Text style={{
-					color: colors[colorScheme].text,
-				}}>Hello Hexagon!</Text>
-				{children}
-		</View>
-	);
-}
-
-function MainNavigator({children}: PropsWithChildren): JSX.Element {
-	const colorScheme = useColorScheme() || 'light';
-
-	return (
-		<MainTab.Navigator
-			// safeAreaInsets={insets}
-			screenOptions={{
-				tabBarShowLabel: false,
-				tabBarStyle: {
-					backgroundColor: '#0000',
-					shadowOpacity: 0,
-					shadowColor: '#0000',
-					height: 56,
-					borderColor: '#0000',
-					borderWidth: 0,
-					elevation: 0,
-				},
-				headerShown: false,
-			}}
-			sceneContainerStyle={{
-				backgroundColor: '#0000',
-				borderColor: '#0000',
-				borderWidth: 0,
-			}}
-		>
-			<MainTab.Screen
-				name='Main'
-				component={MainView}
-				options={{
-					tabBarIcon: ({focused, color, size})=>{
-						if (focused) return <IonIcon name='home' color='white' size={24} />
-						return <IonIcon name='home-outline' color='white' size={24} />
-					},
-				}}
-				
-			/>
-			<MainTab.Screen
-				name='Users'
-				component={MainView}
-				options={{
-					tabBarIcon: ({focused, color, size})=>{
-						if (focused) return <IonIcon name='people' color='white' size={24} />
-						return <IonIcon name='people-outline' color='white' size={24} />
-					},
-				}}
-				
-			/>
-		</MainTab.Navigator>
-	);
-}
+import MainNavigator from './src/navigation/MainNaviagator';
 
 function App(): JSX.Element {
 	useEffect(()=>{
