@@ -12,8 +12,16 @@ import { colors, layout } from '../styles/styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SignIn from '../screens/SignIn/SignIn';
 import Home from '../screens/Home/Home';
+import { ParamListBase } from '@react-navigation/native';
 // Bottom Tab Navigator
-const MainTab = createBottomTabNavigator();
+export type MainNavigatorParamList = {
+	SignIn: {},
+	Home: {},
+};
+
+// export type MainNavigatorRouteParams;
+
+const MainTab = createBottomTabNavigator<MainNavigatorParamList>();
 
 const MainView: React.FC<PropsWithChildren> = ({children}: PropsWithChildren)  => {
 	const isDarkMode = useColorScheme() === 'dark';
@@ -26,6 +34,7 @@ const MainView: React.FC<PropsWithChildren> = ({children}: PropsWithChildren)  =
 				backgroundColor: colors[colorScheme].background,
 				marginTop: insets.top,
 				marginBottom: Platform.OS === 'android' ? insets.bottom : 8,
+				// marginBottom: insets.bottom,
 				marginLeft: insets.left,
 				marginRight: insets.right,
 				overflow: 'hidden',
@@ -56,6 +65,7 @@ function MainNavigator({children}: PropsWithChildren): JSX.Element {
 					margin: 0,
 				},
 				headerShown: false,
+				tabBarHideOnKeyboard: true,
 			}}
 			sceneContainerStyle={{
 				backgroundColor: '#0000',
@@ -64,18 +74,25 @@ function MainNavigator({children}: PropsWithChildren): JSX.Element {
 			}}
 		>
 			<MainTab.Screen
-				name='Login'
+				name='SignIn'
 				children={
 					() => <MainView>
 						<SignIn/>
 					</MainView>
 				}
 				options={{
+					tabBarStyle: {
+						display: 'none',
+					},
 					tabBarIcon: ({focused})=>{
 						if (focused) return <IonIcon name='person' color='white' size={24} />
 						return <IonIcon name='person-outline' color='white' size={24} />
 					},
+					tabBarItemStyle: {
+						display: 'none',
+					}
 				}}
+				
 			/>
 			<MainTab.Screen
 				name='Home'
