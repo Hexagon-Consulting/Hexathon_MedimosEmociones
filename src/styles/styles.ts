@@ -49,11 +49,12 @@ export const layout: StylesLayoutType = {
 	flexFill: {
 		flex: 1
 	},
-	// viewMain: {
-	// 	flex: 1,
-	// 	margin: 4,
-	// 	paddingHorizontal: 4,
-	// }
+	flexColumn: {
+		flexDirection: 'column',
+	},
+	flexRow: {
+		flexDirection: 'row',
+	}
 }
 
 export const fonts: StylesFontType = {
@@ -127,3 +128,7 @@ export const my = (value: number): ViewStyle => ({marginVertical: value});
  * Set padding Y
  */
 export const py = (value: number): ViewStyle => ({paddingVertical: value});
+/**
+ * Custom flex value
+ */
+export const flex = (value: number): ViewStyle => ({flex: value});
