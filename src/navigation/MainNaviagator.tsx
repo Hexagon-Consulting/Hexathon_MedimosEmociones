@@ -13,10 +13,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SignIn from '../screens/SignIn/SignIn';
 import Home from '../screens/Home/Home';
 import { ParamListBase } from '@react-navigation/native';
+import Settings from '../screens/Settings/Settings';
 // Bottom Tab Navigator
 export type MainNavigatorParamList = {
 	SignIn: {},
 	Home: {},
+	Settings: {},
 };
 
 // export type MainNavigatorRouteParams;
@@ -105,6 +107,20 @@ function MainNavigator({children}: PropsWithChildren): JSX.Element {
 					tabBarIcon: ({focused})=>{
 						if (focused) return <IonIcon name='home' color='white' size={24} />
 						return <IonIcon name='home-outline' color='white' size={24} />
+					},
+				}}
+			/>
+			<MainTab.Screen
+				name='Settings'
+				children={
+					() => <MainView>
+						<Settings/>
+					</MainView>
+				}
+				options={{
+					tabBarIcon: ({focused})=>{
+						if (focused) return <IonIcon name='settings' color='white' size={24} />
+						return <IonIcon name='settings-outline' color='white' size={24} />
 					},
 				}}
 			/>
