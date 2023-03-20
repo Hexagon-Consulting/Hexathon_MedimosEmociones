@@ -14,10 +14,12 @@ import SignIn from '../screens/SignIn/SignIn';
 import Home from '../screens/Home/Home';
 import { ParamListBase } from '@react-navigation/native';
 import Settings from '../screens/Settings/Settings';
+import Camera from '../screens/Camera/Camera';
 // Bottom Tab Navigator
 export type MainNavigatorParamList = {
 	SignIn: {},
 	Home: {},
+	Camera: {},
 	Settings: {},
 };
 
@@ -107,6 +109,20 @@ function MainNavigator({children}: PropsWithChildren): JSX.Element {
 					tabBarIcon: ({focused})=>{
 						if (focused) return <IonIcon name='home' color='white' size={24} />
 						return <IonIcon name='home-outline' color='white' size={24} />
+					},
+				}}
+			/>
+			<MainTab.Screen
+				name='Camera'
+				children={
+					() => <MainView>
+						<Camera/>
+					</MainView>
+				}
+				options={{
+					tabBarIcon: ({focused})=>{
+						if (focused) return <IonIcon name='camera' color='white' size={24} />
+						return <IonIcon name='camera-outline' color='white' size={24} />
 					},
 				}}
 			/>
