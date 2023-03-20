@@ -10,8 +10,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { colors, layout } from '../styles/styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import SignIn from '../screens/SignIn';
-import Home from '../screens/Home';
+import SignIn from '../screens/SignIn/SignIn';
+import Home from '../screens/Home/Home';
 // Bottom Tab Navigator
 const MainTab = createBottomTabNavigator();
 

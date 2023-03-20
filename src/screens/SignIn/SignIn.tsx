@@ -5,7 +5,7 @@ import {
 	View
 } from "react-native";
 
-import {bgColor, colors, fonts, layout, m, mx, my} from '../styles/styles';
+import {bgColor, colors, fonts, layout, m, mx, my} from '../../styles/styles';
 
 const SignIn: React.FC = () => {
 	const colorScheme = useColorScheme() || 'light';
