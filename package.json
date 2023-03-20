@@ -21,6 +21,7 @@
     "react-native-share": "^8.2.1",
     "react-native-splash-screen": "^3.3.0",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-vision-camera": "^2.15.4",
     "rn-local-authentication": "^1.2.5"
   },
   "devDependencies": {
