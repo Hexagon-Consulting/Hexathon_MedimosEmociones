@@ -63,12 +63,24 @@ export const fonts: StylesFontType = {
 			fontWeight: 'normal',
 			color: colors.light.text,
 		},
+		h1: {
+			fontSize: 26,
+			fontWeight: 'bold',
+			color: colors.light.text,
+			margin: 8,
+		},
 	},
 	dark: {
 		p: {
 			fontSize: 14,
 			fontWeight: 'normal',
 			color: colors.dark.text,
+		},
+		h1: {
+			fontSize: 26,
+			fontWeight: 'bold',
+			color: colors.dark.text,
+			margin: 8,
 		},
 	},
 }

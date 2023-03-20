@@ -4,6 +4,7 @@ import {
 	useColorScheme, 
 	View
 } from "react-native";
+import Divider from "../../components/Divider/Divider";
 
 import {bgColor, colors, fonts, layout, m, mx, my} from '../../styles/styles';
 
@@ -17,9 +18,15 @@ const SignIn: React.FC = () => {
 			mx(8), my(16),
 		]}>
 			<Text style={[
-				fonts[colorScheme].p,
+				fonts[colorScheme].h1,
 			]}>
 				Sign In Screen
+			</Text>
+			<Divider/>
+			<Text
+				style={[fonts[colorScheme].p]}
+			>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore velit qui hic eaque nulla distinctio nihil ab, labore magni eveniet suscipit sed possimus pariatur modi fugiat autem saepe provident neque.
 			</Text>
 		</View>
 	);
