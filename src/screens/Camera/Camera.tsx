@@ -1,4 +1,4 @@
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { 
@@ -9,6 +9,8 @@ import {
 	View
 } from "react-native";
 import { Camera, PhotoFile, useCameraDevices } from "react-native-vision-camera";
+
+import RNFetchBlob from "rn-fetch-blob";
 
 
 import {bgColor, colors, fonts, layout, m, mx, my} from '../../styles/styles';
@@ -45,11 +47,13 @@ const CameraScreen: React.FC = () => {
 	const isFocused = useIsFocused();
 	const devices = useCameraDevices();
 	const camera = useRef<Camera>(null);
+	const {} = useNavigation();
 
 	const [loading, setLoading] = useState(false);
 	const [showCamera, setShowCamera] = useState<boolean>(false);
 	const [alertMessage, setAlertMessage] = useState<string>('');
 	const [currentPhoto, setCurrentPhoto] = useState<PhotoFile | null>(null);
+	const [photoData, setPhotoData] = useState<string>('');
 
 	const openCamera = async () => {
 		console.log('Checking devices...')
@@ -99,13 +103,29 @@ const CameraScreen: React.FC = () => {
 			if (photoTaken) {
 				setCurrentPhoto(photoTaken);
 				setShowCamera(false);
+				console.log('Photo taken:', JSON.stringify(photoTaken, null, ' '));
+				return RNFetchBlob.fs.readFile(`file://${photoTaken.path}`, 'base64');
 			}
 			else {
 				setAlertMessage('Hubo un problema al intentar tomar la foto.');
+				return Promise.reject();
 			}
-		}).catch(reason => {
+		})
+		.then( res => {
+			let b64data = res;
+			if (b64data) {
+				// console.log('Photo data:', b64data);
+				setPhotoData(b64data);
+			}
+			else {
+				setAlertMessage('Hubo un problema al intentar convertir la foto.');
+				return Promise.reject();
+			}
+		})
+		.catch(reason => {
 			console.log(reason);
-		}).finally(() => {
+		})
+		.finally(() => {
 			setLoading(false);
 		});
 
@@ -118,6 +138,9 @@ const CameraScreen: React.FC = () => {
 	useEffect(() => {
 		if (isFocused) {
 			openCamera();
+		}
+		else {
+			setCurrentPhoto(null);
 		}
 	},[isFocused, devices]);
 

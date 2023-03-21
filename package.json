@@ -23,6 +23,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-vision-camera": "^2.15.4",
     "react-native-webview": "^11.26.1",
+    "rn-fetch-blob": "^0.12.0",
     "rn-local-authentication": "^1.2.5"
   },
   "devDependencies": {
